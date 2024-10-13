@@ -6,10 +6,25 @@
         <title>Document</title>
     </head>
     <body>
+
+        <section id="see-template">
+            <header>
+                <button id="sign-up-btn" data-target="signup">sign-up</button>
+            </header>
+            <main>
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" />
+                <label for="password">password:</label>
+                <input type="password" id="password" name="password" />
+                <button id="log-in-user">log-in</button>
+            </main>
+            <script src="./js/login.js"></script>
+        </section>
+
         <template id="log-in-template">
             <div class="main-div">
                 <header>
-                    <button id="sign-up-btn">sign-up</button>
+                    <button id="sign-up-btn" data-target="signup">sign-up</button>
                 </header>
                 <main>
                     <label for="username">Username:</label>
@@ -18,13 +33,14 @@
                     <input type="password" id="password" name="password" />
                     <button id="log-in-user">log-in</button>
                 </main>
+                <script src="./js/login.js"></script>
             </div>
         </template>
 
-        <!-- <template id="sign-up-template"> -->
+        <template id="sign-up-template">
             <div class="main-div">
                 <header>
-                    <button id="log-in-btn">sign-up</button>
+                    <button id="log-in-btn" data-target="login">log-in</button>
                 </header>
                 <main>
                     <label for="username">Username:</label>
@@ -37,7 +53,7 @@
                     <button id="sign-up-user">sign-up</button>
                 </main>
             </div>
-        <!-- </template> -->
+        </template>
 
         <template id="meeting-template">
             <div class="main-div">
@@ -52,5 +68,7 @@
                 </main>
             </div>
         </template>
+
+        <script src="./js/index.js"></script>
     </body>
 </html>
