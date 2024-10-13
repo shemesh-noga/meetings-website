@@ -1,17 +1,93 @@
-/* *{
+*{
     box-sizing: border-box;
     margin: 0%;
     padding: 0%;
-} */
+    font-size: 16px;
+}
+
+.main-div{
+    min-height: 100vh;
+    border: 1px solid black;
+    position: relative;
+    width: 100%;
+    background-color: rgb(39, 11, 65);
+}
 
 header{
     border: 1px solid black;
+    height: 130px;
+    position: relative;
+    width: 100%;
+}
+
+header h1{
+    text-align: center;
+    font-size: 2.6rem;
+    margin-top: 30px;
+    color: white;
+}
+
+header button{
+    position: absolute;
+    right: 120px;
+    bottom: 40px;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(224, 165, 38);
+}
+
+.main-div main{
+    width: 100%;
+    min-height: 86%;
+
+}
+
+.main-div main h2{
+    color: white;
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 35px;
+}
+
+#login-container{
+    color: white;
+    border: 1px solid white;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+    justify-content: space-evenly;
+    min-height: 350px;
+    margin-top: 30px;
+}
+
+#login-container label{
+    font-size: 1.5rem;
+}
+
+#login-container input {
+    font-size: 1.5rem;
+    color: black;
+}
+
+#login-container button{
+    font-size: 1.3rem;
+    padding: 2px 6px;
+    border-radius: 8px;
+    background-color: rgb(224, 165, 38);
+
 }
 
 
-div{
+
+
+/* div{
     display:flex;
     align-items:center;
     justify-content: center;
     width:50%;
-}
+} */
