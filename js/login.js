@@ -1,9 +1,7 @@
+var signupBtn = document.getElementById("sign-up-btn");
+var section = document.getElementById("see-template")
 
-
-const loginBtn = document.getElementById("sign-up-btn");
-const section = document.getElementById("see-template")
-
-loginBtn.addEventListener("click", changeTemplate);
+signupBtn.addEventListener("click", changeTemplate);
 
 //save the data of the page we want to put in the screen
 function changeTemplate() {

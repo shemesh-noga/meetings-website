@@ -1,5 +1,5 @@
-const loginBtn = document.getElementById("log-in-btn");
-const section = document.getElementById("see-template")
+var loginBtn = document.getElementById("log-in-btn");
+var section = document.getElementById("see-template")
 
 loginBtn.addEventListener("click", changeTemplate);
 
