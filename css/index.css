@@ -3,6 +3,7 @@
     margin: 0%;
     padding: 0%;
     font-size: 16px;
+    font-family: "Poppins";
 }
 
 .main-div{
@@ -10,21 +11,24 @@
     border: 1px solid black;
     position: relative;
     width: 100%;
-    background-color: rgb(39, 11, 65);
+    background-color: rgb(41, 10, 70);
 }
 
 header{
-    border: 1px solid black;
     height: 130px;
     position: relative;
     width: 100%;
+    background-color: rgb(32, 7, 56);
+    border: 1px solid rgb(41, 10, 70);
 }
 
 header h1{
     text-align: center;
-    font-size: 2.6rem;
-    margin-top: 30px;
+    font-size: 3rem;
+    margin-top: 40px;
     color: white;
+    font-family: "Archivo Black";
+    font-weight: 100;
 }
 
 header button{
@@ -32,10 +36,11 @@ header button{
     right: 120px;
     bottom: 40px;
     font-size: 1.5rem;
-    padding: 5px 10px;
+    padding: 8px 18px;
     border: none;
     border-radius: 10px;
     background-color: rgb(224, 165, 38);
+    transition: all 0.1s linear 0.01s;
 }
 
 .main-div main{
@@ -48,38 +53,58 @@ header button{
     color: white;
     text-align: center;
     font-size: 2rem;
-    margin-top: 35px;
+    margin-top: 45px;
 }
 
-#login-container{
+#login-container, #signup-container{
     color: white;
-    border: 1px solid white;
     width: 600px;
     display: flex;
     flex-direction: column;
     align-content: center;
     align-items: center;
     margin: auto;
+    margin-top: 30px;
     justify-content: space-evenly;
     min-height: 350px;
     margin-top: 30px;
 }
 
-#login-container label{
+#signup-container {
+    color: white;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 30px;
+    justify-content: space-evenly;
+    min-height: 400px;
+    margin-top: 30px;
+}
+
+#login-container label, #signup-container label {
     font-size: 1.5rem;
 }
 
-#login-container input {
+#login-container input, #signup-container input {
     font-size: 1.5rem;
     color: black;
 }
 
-#login-container button{
+#login-container button, #signup-container button{
     font-size: 1.3rem;
     padding: 2px 6px;
     border-radius: 8px;
     background-color: rgb(224, 165, 38);
+    transition: all 0.1s linear 0.01s;
 
+}
+
+button:hover{
+    transform: scale(1.05);
+    font-weight: 500;
 }
 
 

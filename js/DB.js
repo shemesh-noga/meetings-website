@@ -31,9 +31,11 @@ let meetings=[
 
 ];
 
-
+window.localStorage.clear();
 window.localStorage.setItem("users", JSON.stringify(users));
 window.localStorage.setItem("meetings", JSON.stringify(meetings));
+window.localStorage.setItem("currentuser", JSON.stringify(users[0]));
+
 
 //מחלקת משתמש חדש
 class User{
@@ -55,9 +57,21 @@ class Meeting{
 
 // שליפת מידע
 function getInfo(key, index){
-    const value = JSON.parse(window.localStorage.getItem(key))
-    return value;
+    const value = JSON.parse(window.localStorage.getItem(key));
+    if (index === undefined) {
+        return value;
+    } else {
+        for(let i = 0 ; i < value.length ; i++) {
+            if (index === value[i].id) {
+                return value[i];
+            }
+        }
+    }
 }
+
+console.log(getInfo("meetings"))
+console.log(getInfo("meetings", 1))
+
 
 
 // הוספת פגישה חדשה
@@ -138,21 +152,6 @@ function updateMeeting(id, key, value){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // פונקציות עזר
 
 // פונקציה שמעדכנת את תוכן משתמש נוכחי למערך היוזרים
@@ -167,10 +166,3 @@ function currentUserToUsers(currentUser) {
     }
 
 }
-
-
-
-
-
-
-
