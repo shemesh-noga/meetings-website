@@ -51,8 +51,9 @@ function checkSignUp(username, password){
     const newuser = new User(username, password);
     users.push(newuser); 
     window.localStorage.setItem("users",JSON.stringify(users));
-
 }
+
+
 
 
 
