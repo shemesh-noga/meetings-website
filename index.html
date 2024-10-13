@@ -8,19 +8,24 @@
     <body>
         <template id="log-in-template">
             <div class="main-div">
-                <header></header>
+                <header>
+                    <button id="sign-up-btn">sign-up</button>
+                </header>
                 <main>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" />
                     <label for="password">password:</label>
                     <input type="password" id="password" name="password" />
+                    <button id="log-in-user">log-in</button>
                 </main>
             </div>
         </template>
 
         <template id="sign-up-template">
             <div class="main-div">
-                <header></header>
+                <header>
+                    <button id="log-in-btn">sign-up</button>
+                </header>
                 <main>
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" />
@@ -28,14 +33,22 @@
                     <input type="password" id="password" name="password" />
                     <label for="password">password:</label>
                     <input type="password" id="password-check" name="password-check" />
+                    <button id="sign-up-user">sign-up</button>
                 </main>
             </div>
         </template>
 
         <template id="meeting-template">
             <div class="main-div">
-                <header></header>
-                <main></main>
+                <header>
+                    <h5 id="name">name??</h5>
+                    <button id="log-out">log-out</button>
+                </header>
+                <main>
+                    <h2>my meetings</h2>
+                    <div id="meeting-container"></div>
+                    <button id="add-meeting">+</button>
+                </main>
             </div>
         </template>
     </body>
