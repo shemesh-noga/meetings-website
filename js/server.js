@@ -93,7 +93,7 @@ function server(objString) {
                     if (thisUser === false) {
                         let thisdata = addNewUser(body["username"], body["password"]);
                         response = new Response(200, "user was added succesfully", thisdata);
-                        console.log(thisdata)
+                        console.log(response)
                         return response;
                     } else {
                         response = new Response(404, "there is already a user with this username");

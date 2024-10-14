@@ -15,12 +15,12 @@ class Fajax{
 
 }
 
-// const fajax= new Fajax();
-// // fajax.onload = function() {
+const fajax= new Fajax();
+// fajax.onload = function() {
    
-// //   }
-// fajax.open("GET", "hi/hello");
-// fajax.send();
+//   }
+fajax.open("DELETE", "tairAndNoga/api/meetings", '{"id":2}');
+fajax.send();
 
 
 

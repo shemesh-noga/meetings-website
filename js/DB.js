@@ -161,6 +161,8 @@ function addNewUser(username, password){
 
     users.push(newuser); 
     setInfo("users", users);
+
+    return newuser;
 }
 
 
