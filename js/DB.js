@@ -1,3 +1,4 @@
+//Building an full users array aims to fill the local storage
 let users=[
     {
         "username":"tair",
@@ -12,6 +13,7 @@ let users=[
    
 ]
 
+//Building an full meetings array aims to fill the local storage
 let meetings=[
     {
       "id":1,
@@ -31,13 +33,14 @@ let meetings=[
 
 ];
 
+//clean and then fill the local storage 
 window.localStorage.clear();
 window.localStorage.setItem("users", JSON.stringify(users));
 window.localStorage.setItem("meetings", JSON.stringify(meetings));
 window.localStorage.setItem("currentuser", JSON.stringify(users[0]));
 
 
-//מחלקת משתמש חדש
+//a class that creates a new User
 class User{
     constructor(username, password){
         this.username = username;
@@ -46,7 +49,7 @@ class User{
     }
 }
 
-// מחלקת פגישה חדשה
+//a class that creates a new Meeting
 class Meeting{
     constructor(name, time){
         this.name = name;
@@ -55,8 +58,7 @@ class Meeting{
     }
 }
 
-
-// פונקציה שמוצאת איי די פנוי וחדש
+//a function that finds a new unused ID
 function findAvailID() {
     const MmetingsLength = getInfo("meetings").length;
     const id = MmetingsLength + 1;
@@ -65,7 +67,7 @@ function findAvailID() {
 
 
 
-// פונקציה שמכניסה את מידע המשתמש הנוכחי למערך המשתמשים
+// A function that inserts the current user's information into the user array
 function currentUserToUsers(currentUser) {
     const users = getInfo("users");
 
@@ -78,8 +80,7 @@ function currentUserToUsers(currentUser) {
 }
 
 
-
-// שליפת מידע
+//A function that extracts information according to the key and index it receives
 function getInfo(key, index){
     const value = JSON.parse(window.localStorage.getItem(key));
     if (index === undefined) {
@@ -95,7 +96,7 @@ function getInfo(key, index){
 }
 
 
-
+ // this function get the info of the current user
 function getCurrentUserInfo(index) {
     const currentuser = JSON.parse(window.localStorage.getItem("currentuser"));
     if (index === undefined) {
@@ -108,13 +109,13 @@ function getCurrentUserInfo(index) {
 console.log(getCurrentUserInfo())
 console.log(getCurrentUserInfo("username"))
 
-// פונקציה שמכניסה מידע
+// A function that enters information
 function setInfo(key, change){
     window.localStorage.setItem(key, JSON.stringify(change));
 }
 
 
-// שליפת פגישות של משתמש
+//A function that retrieves all sessions of a certain user
 function getMeetings(username){
     const users = getInfo("users");
     const meetings = getInfo("meetings");
@@ -137,7 +138,7 @@ function getMeetings(username){
 }
 
 
-// הוספת פגישה חדשה
+// a function that add new meeting to certain user
 function addNewMeeting(name, time){
     const meetings = getInfo("meetings");
     const currentuser = getInfo("currentuser");
@@ -155,7 +156,7 @@ function addNewMeeting(name, time){
 }
 
 
-// מוסיף את המשתמש החדש
+//a function that add new user to local storages
 function addNewUser(username, password){
     const users = getInfo("users")
     const newuser = new User(username, password);
@@ -166,7 +167,7 @@ function addNewUser(username, password){
 
 
 
-// נכנס למשתמש
+// a function that doo login 
 function doLogIn(obj) {
     let username = obj["username"];
     let currentuser = getInfo("currentuser");
@@ -184,7 +185,7 @@ function doLogIn(obj) {
 
 
 
-//מעדכן פגישה
+// a function that update spacific meeting
 function updateMeeting(id, key, value){
     const meetings = getInfo("meetings");
     for(let i = 0 ; i < meetings.length ; i ++){
@@ -196,7 +197,7 @@ function updateMeeting(id, key, value){
 }
 
 
-// מוחק פגישה
+// this function delete meeting by is id
 function deleteMeeting(id){
     const meetings = getInfo("meetings");
     const currentuser = getInfo("currentuser")
@@ -217,7 +218,7 @@ function deleteMeeting(id){
     return meetings;
 }
 
-// פונקציה שמרוקנת את המשתמש הקיים
+//function that clears the existing user
 function disconnect() {
     setInfo("currentuser", "");
 }

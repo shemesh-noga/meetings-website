@@ -5,15 +5,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <link rel="stylesheet" href="./css/index.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+        />
     </head>
-
-
 
     <body>
         <script src="./js/DB.js"></script>
@@ -21,8 +22,6 @@
         <script src="./js/index.js"></script>
         <script src="./js/network.js"></script>
         <script src="./js/fajax.js"></script>
-
-    
 
         <section id="see-template">
             <div class="main-div">
@@ -34,9 +33,9 @@
                     <h2>Log In</h2>
                     <div id="login-container">
                         <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required/>
+                        <input type="text" id="username" name="username" required />
                         <label for="password">password:</label>
-                        <input type="password" id="password" name="password" required/>
+                        <input type="password" id="password" name="password" required />
                         <button type="submit" id="log-in-user">log-in</button>
                     </div>
                 </main>
@@ -54,9 +53,9 @@
                     <h2>Log In</h2>
                     <div id="login-container">
                         <label for="username">Username:</label>
-                        <input type="text" id="username" name="username" required/>
+                        <input type="text" id="username" name="username" required />
                         <label for="password">password:</label>
-                        <input type="password" id="password" name="password" required/>
+                        <input type="password" id="password" name="password" required />
                         <button type="submit" id="log-in-user">log-in</button>
                     </div>
                 </main>
@@ -101,12 +100,15 @@
                 <main>
                     <h2>my meetings</h2>
                     <div id="meeting-container">
-
+                        <!-- function that built divs -->
                     </div>
                     <button id="add-meeting">+</button>
                 </main>
                 <script src="./js/meeting.js"></script>
             </div>
+            <script>
+                buildDivs();
+            </script>
         </template>
 
         <script src="./js/index.js"></script>

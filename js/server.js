@@ -1,3 +1,4 @@
+//build class of response
 class Response{
     constructor(status, message, data = ""){
         this.status = status;
@@ -5,7 +6,6 @@ class Response{
         this.data = data;
     }
 }
-
 
 
 // tairAndNoga/api/meetings/1
@@ -16,11 +16,15 @@ function server(objString) {
     const url = obj["url"]
     const body = obj["body"]
 
+
+    //using rejgex in order to find the last part of the url
+    //By finding the part we will know if the request is general or specific
     let regMatch = url.match(/\/([^\/]+)$/);
     let regex = /\//;
     let response;
 
     switch(method) {
+        //in case of GET method
         case "GET":
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/);
@@ -52,6 +56,7 @@ function server(objString) {
             
             break;
 
+        //in case of POST method
         case "POST":
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/);
@@ -104,7 +109,7 @@ function server(objString) {
             }
 
             break;
-
+        //in case of PUT method
         case "PUT":
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/);
@@ -120,7 +125,7 @@ function server(objString) {
             }
 
             break;
-
+       //in case of DELETE method
         case "DELETE":
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/);
