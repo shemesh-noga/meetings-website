@@ -3,7 +3,6 @@ var loginBtn = document.getElementById("log-in-btn");
 var section = document.getElementById("see-template")
 
 loginBtn.addEventListener("click", changeTemplate);
-
 //save the data of the page we want to put in the screen
 function changeTemplate() {
     section.innerHTML = "";
@@ -14,4 +13,18 @@ function changeTemplate() {
     section.appendChild(loginContent)
 }
 
+<<<<<<< HEAD
+=======
+function changeTemplateToMeeting() {
+    section.innerHTML = "";
+    let meetingTemp = document.getElementById("meeting-template");
+    let meetingContent = meetingTemp.content.cloneNode(true);
+  
+    //trensform the template into the section and change page 
+    section.appendChild(meetingContent)
+}
+
+
+
+>>>>>>> d03bfe1065e3b902cbd180c1b678a152c0079415
 

@@ -87,7 +87,7 @@ function getInfo(key, index){
         return value;
     } else {
         for(let i = 0 ; i < value.length ; i++) {
-            if (index === value[i].id || index === value[i]["username"]) {
+            if (index == value[i]["id"] || index == value[i]["username"]) {
                 return value[i];
             }
         } 
@@ -98,7 +98,7 @@ function getInfo(key, index){
 
  // this function get the info of the current user
 function getCurrentUserInfo(index) {
-    const currentuser = JSON.parse(window.localStorage.getItem("currentuser"));
+    const currentuser = getInfo("currentuser");
     if (index === undefined) {
         return currentuser;
     } else {
@@ -106,22 +106,20 @@ function getCurrentUserInfo(index) {
     }
 }
 
-console.log(getCurrentUserInfo())
-console.log(getCurrentUserInfo("username"))
-
-// A function that enters information
+// פונקציה שמכניסה מידע
 function setInfo(key, change){
     window.localStorage.setItem(key, JSON.stringify(change));
 }
 
 
-//A function that retrieves all sessions of a certain user
-function getMeetings(username){
+// שליפת פגישות של משתמש
+function getMeetings(){
     const users = getInfo("users");
     const meetings = getInfo("meetings");
+    const currentuser = getInfo("currentuser")
     let returnedMeetings = []
     for(let i = 0 ; i < users.length ; i++){
-        if(users[i]["username"] === username){
+        if(users[i]["username"] === currentuser["username"]){
             let usersMeetings = users[i]["meetings"]
 
             for(let j = 0 ; j < usersMeetings.length ; j++) {
@@ -163,6 +161,8 @@ function addNewUser(username, password){
 
     users.push(newuser); 
     setInfo("users", users);
+
+    return newuser;
 }
 
 
@@ -188,9 +188,12 @@ function doLogIn(obj) {
 // a function that update spacific meeting
 function updateMeeting(id, key, value){
     const meetings = getInfo("meetings");
+
     for(let i = 0 ; i < meetings.length ; i ++){
         if(meetings[i]["id"] === id) {
-            meetings[key] = value;
+            meetings[i][key] = value;
+            setInfo("meetings", meetings)
+            break;
         }
     }
     return meetings;

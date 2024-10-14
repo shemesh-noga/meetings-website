@@ -1,16 +1,15 @@
 //built fake class Simulates real ajax
 class Fajax{
-
-    //displays the data
-  open(method, url, body){
-        this.method=method,
-        this.url=url,
-        this.body=body 
-    }
+  open(method, url, body = 'null'){
+      this.method=method,
+      this.url=url,
+      this.body=body 
+  }
   
-    //send the data to net work
+  //send the data to net work
   send(){     
     let responsedFromNet = getData(JSON.stringify(this));
+<<<<<<< HEAD
     console.log(this)
   }
 
@@ -46,7 +45,15 @@ for(let i=0; i<info.length; i++){
     </div>`;
     element.appendChild(el);
 }
+=======
+    console.log(this);
+    this.onload(responsedFromNet);
+  };
+>>>>>>> d03bfe1065e3b902cbd180c1b678a152c0079415
 }
+
+
+
 
 
 

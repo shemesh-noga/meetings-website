@@ -15,7 +15,10 @@ function changeTemplate() {
 }
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> d03bfe1065e3b902cbd180c1b678a152c0079415
