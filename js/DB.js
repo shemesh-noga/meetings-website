@@ -94,6 +94,8 @@ function getInfo(key, index){
     }
 }
 
+
+
 function getCurrentUserInfo(index) {
     const currentuser = JSON.parse(window.localStorage.getItem("currentuser"));
     if (index === undefined) {
@@ -161,8 +163,10 @@ function addNewUser(username, password){
 }
 
 
+
 // נכנס למשתמש
-function doLogIn(username) {
+function doLogIn(obj) {
+    let username = obj["username"];
     let currentuser = getInfo("currentuser");
     const users = getInfo("users");
     for(let i = 0 ; i < users.length ; i++){
@@ -173,6 +177,9 @@ function doLogIn(username) {
         }
     }
 }
+
+
+
 
 
 //מעדכן פגישה
@@ -203,9 +210,9 @@ function deleteMeeting(id){
     setInfo("currentuser", currentuser)
 
     currentUserToUsers(currentuser);
+
+    return meetings
 }
-
-
 
 // פונקציה שמרוקנת את המשתמש הקיים
 function disconnect() {

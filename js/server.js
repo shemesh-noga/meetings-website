@@ -13,7 +13,7 @@ function server(objString) {
     const obj = JSON.parse(objString)
     const method = obj["method"]
     const url = obj["url"]
-    const data = obj["data"]
+    const body = obj["body"]
 
     let regMatch = url.match(/\/([^\/]+)$/);
     let regex = /\//;
@@ -33,31 +33,61 @@ function server(objString) {
                     response = new Response(404, `invalid ${key}`)
                     return response;
                 } else {
-                    const thisData = getInfo(key, index)
-                    response = new Response(200, `got ${index}`, thisData)
+                    const thisdata = getInfo(key, index)
+                    response = new Response(200, `got ${index}`, thisdata)
                     return response;
                 }
 
             } else {
                 if (regMatch !== "currentuser" || regMatch !== "meetings" || regMatch !== "users") {
-                    const thisData = getInfo(regMatch)
-                    response = new Response(200, `got ${regMatch}`, thisData)
-                    return response
+                    response = new Response(404, `${regMatch} not found in local storage`);
+                    return response;
                 } else {
-                    response = new Response(404, `${regMatch} not found in local storage`, thisData)
-                    return response
+                    const thisdata = getInfo(regMatch);
+                    response = new Response(200, `got ${regMatch}`, thisdata);
+                    return response;
                 }
             }
             
             break;
 
         case "POST":
+            if(regex.test(regMatch)) {
+                let key = regMatch.match(/^[^\/]+/);
+                let index = regMatch.match(/\/(.+)/);
+                if(key === "meetings" && index === "new") {addingNewMeeting(body)}
+                else {
+                    response = new Response(404, `key:${key} and or index:${index} not found`)
+                    return response;
+                }
+            } else {
+                if(regMatch === "signin") {addingNewUser(body)}
+                else if(regMatch === "login") {checkingLogIn(body)}
+                else {
+                    response = new Response(404, `path:${regMatch} not found`)
+                    return response;
+                }
+            }
 
             break;
+
         case "PUT":
+            if () {
 
+            }
             break;
-        case "Delete":
+
+        case "DELETE":
+            if(regex.test(regMatch)) {
+                let key = regMatch.match(/^[^\/]+/);
+                let index = regMatch.match(/\/(.+)/);
+
+                if(key === "meetings") {
+                    let data = deleteMeeting(body.id);
+                    response = new Response(202, "meeting deleted succesfully", data);
+                    return response;
+                }
+            }
 
             break;
     }
@@ -69,26 +99,23 @@ function server(objString) {
 
 
 // בודק האם קיים משתמש בשם הזה, אם לא מוסיף את המשתמש החדש
-function addingNewUser(objString){
-    obj = JSON.parse(objString);
+function addingNewUser(obj){
     const thisUser = getInfo("users", obj["username"]);
     let response;
 
     if (thisUser === false) {
         addNewUser(obj["username"], obj["password"]);
-        response = new Response(200, "user was added succesfully", {});
+        response = new Response(200, "user was added succesfully");
     } else {
         response = new Response(404, "there is already a user with this name");
     }
-    console.log(response);
     return response;
 }
 
 
 
 // הוספת פגישה חדשה
-function addingNewMeeting(objString){
-    obj = JSON.parse(objString);
+function addingNewMeeting(obj){
     let response;
     if(obj["name"] === undefined || obj["time"] === undefined || obj["name"] === "" || obj["time"] === "" ) {
         response = new Response(404, "please fill name and or time");
@@ -96,30 +123,28 @@ function addingNewMeeting(objString){
         addNewMeeting(obj["name"], obj["time"]);
         response = new Response(200, "meeting added succesfully")
     }
-    console.log(response);
     return response;
 }
 
 
 
-// עושה כניסה לוגין
-function checkingLogIn(objString) {
-    obj = JSON.parse(objString);
+// בודק או עושה כניסה לוגין
+function checkingLogIn(obj) {
     let response;
-    if() {
-        response = new Response(404, "");
+    const tryLogIn = getInfo("users", obj["username"])
+    if(tryLogIn === false) {
+        response = new Response(404, `user doesn\'t exist`);
+    } else if (tryLogIn["password"] !== obj["password"]){
+        response = new Response(404, "wrong password");
     } else {
-        addNewMeeting(obj["name"], obj["time"]);
-        response = new Response(200, "")
+        doLogIn(obj)
+        response = new Response(200, `logged in succesfully into ${obj["username"]}`)
     }
-    console.log(response);
     return response;
 }
 
 
-function updatingMeeting(objString){
-    obj = JSON.parse(objString);
-
+function updatingMeeting(obj){
     
 }
 
