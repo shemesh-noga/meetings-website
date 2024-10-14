@@ -139,19 +139,6 @@ function updateMeeting(id, key, value){
 
 
 
-
-
-
-
- 
-
-
-
-
-
-
-
-
 // פונקציה שמרוקנת את המשתמש הקיים
 function disconnect() {
     window.localStorage.setItem("currentuser", "");
