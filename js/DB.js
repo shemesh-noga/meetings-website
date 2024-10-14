@@ -94,6 +94,18 @@ function getInfo(key, index){
     }
 }
 
+function getCurrentUserInfo(index) {
+    const currentuser = JSON.parse(window.localStorage.getItem("currentuser"));
+    if (index === undefined) {
+        return currentuser;
+    } else {
+        return currentuser[index];
+    }
+}
+
+console.log(getCurrentUserInfo())
+console.log(getCurrentUserInfo("username"))
+
 // פונקציה שמכניסה מידע
 function setInfo(key, change){
     window.localStorage.setItem(key, JSON.stringify(change));
