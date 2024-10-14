@@ -150,6 +150,8 @@ function addNewMeeting(name, time){
     setInfo("currentuser", currentuser);
 
     currentUserToUsers(currentuser);
+
+    return newMeeting;
 }
 
 
@@ -176,20 +178,21 @@ function doLogIn(obj) {
             break;
         }
     }
+    return currentuser
 }
-
 
 
 
 
 //מעדכן פגישה
 function updateMeeting(id, key, value){
-    const meetings=JSON.parse(window.localStorage.getItem("meetings"));
+    const meetings = getInfo("meetings");
     for(let i = 0 ; i < meetings.length ; i ++){
         if(meetings[i]["id"] === id) {
             meetings[key] = value;
         }
     }
+    return meetings;
 }
 
 
@@ -211,7 +214,7 @@ function deleteMeeting(id){
 
     currentUserToUsers(currentuser);
 
-    return meetings
+    return meetings;
 }
 
 // פונקציה שמרוקנת את המשתמש הקיים

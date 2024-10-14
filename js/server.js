@@ -55,16 +55,49 @@ function server(objString) {
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/);
                 let index = regMatch.match(/\/(.+)/);
-                if(key === "meetings" && index === "new") {addingNewMeeting(body)}
-                else {
-                    response = new Response(404, `key:${key} and or index:${index} not found`)
+
+                if(key === "meetings" && index === "new") {
+                    if(body["name"] === undefined || body["time"] === undefined || body["name"] === "" || body["time"] === "" ) {
+                        response = new Response(404, "please fill name and or time");
+                        return response;
+                    } else {
+                        let thisdata = addNewMeeting(body["name"], body["time"]);
+                        response = new Response(200, "meeting added succesfully", thisdata);
+                        return response;
+                    }
+                } else {
+                    response = new Response(404, `${url} not found`)
                     return response;
                 }
             } else {
-                if(regMatch === "signin") {addingNewUser(body)}
-                else if(regMatch === "login") {checkingLogIn(body)}
+                if(regMatch === "signin") {
+                    const thisUser = getInfo("users", body["username"]);
+
+                    if (thisUser === false) {
+                        let thisdata = addNewUser(body["username"], body["password"]);
+                        response = new Response(200, "user was added succesfully", thisdata);
+                        return response;
+                    } else {
+                        response = new Response(404, "there is already a user with this username");
+                        return response;
+                    }
+                }
+                else if(regMatch === "login") {
+                    const tryLogIn = getInfo("users", body["username"])
+                    if(tryLogIn === false) {
+                        response = new Response(404, `user doesn\'t exist`);
+                        return response;
+                    } else if (tryLogIn["password"] !== body["password"]){
+                        response = new Response(404, "wrong password");
+                        return response;
+                    } else {
+                        let thisdata = doLogIn(body);
+                        response = new Response(200, `logged in succesfully into ${body["username"]}`, thisdata);
+                        return response;
+                    }
+                }
                 else {
-                    response = new Response(404, `path:${regMatch} not found`)
+                    response = new Response(404, `tairAndNoga/api/${regMatch} not found`)
                     return response;
                 }
             }
@@ -72,9 +105,19 @@ function server(objString) {
             break;
 
         case "PUT":
-            if () {
-
+            if(regex.test(regMatch)) {
+                let key = regMatch.match(/^[^\/]+/);
+                let index = regMatch.match(/\/(.+)/);
+                if(key === "meetings") {
+                    let thisdata = updateMeeting(body["id"], body["key"], body["value"])
+                    response = new Response(200, `changed succesfully this meeting`, thisdata);
+                    return response;
+                }
+            } else {
+                response = new Response(404, `${url} not found`, thisdata);
+                return response;
             }
+
             break;
 
         case "DELETE":
@@ -83,65 +126,22 @@ function server(objString) {
                 let index = regMatch.match(/\/(.+)/);
 
                 if(key === "meetings") {
-                    let data = deleteMeeting(body.id);
-                    response = new Response(202, "meeting deleted succesfully", data);
+                    let thisdata = deleteMeeting(body.id);
+                    response = new Response(200, "meeting deleted succesfully", thisdata);
                     return response;
                 }
+            } else {
+                response = new Response(404, `${url} not found`);
+                return response;
             }
-
             break;
     }
-
-
 }
 
 
 
 
-// בודק האם קיים משתמש בשם הזה, אם לא מוסיף את המשתמש החדש
-function addingNewUser(obj){
-    const thisUser = getInfo("users", obj["username"]);
-    let response;
 
-    if (thisUser === false) {
-        addNewUser(obj["username"], obj["password"]);
-        response = new Response(200, "user was added succesfully");
-    } else {
-        response = new Response(404, "there is already a user with this name");
-    }
-    return response;
-}
-
-
-
-// הוספת פגישה חדשה
-function addingNewMeeting(obj){
-    let response;
-    if(obj["name"] === undefined || obj["time"] === undefined || obj["name"] === "" || obj["time"] === "" ) {
-        response = new Response(404, "please fill name and or time");
-    } else {
-        addNewMeeting(obj["name"], obj["time"]);
-        response = new Response(200, "meeting added succesfully")
-    }
-    return response;
-}
-
-
-
-// בודק או עושה כניסה לוגין
-function checkingLogIn(obj) {
-    let response;
-    const tryLogIn = getInfo("users", obj["username"])
-    if(tryLogIn === false) {
-        response = new Response(404, `user doesn\'t exist`);
-    } else if (tryLogIn["password"] !== obj["password"]){
-        response = new Response(404, "wrong password");
-    } else {
-        doLogIn(obj)
-        response = new Response(200, `logged in succesfully into ${obj["username"]}`)
-    }
-    return response;
-}
 
 
 function updatingMeeting(obj){
