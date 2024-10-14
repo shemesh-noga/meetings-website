@@ -31,9 +31,11 @@ let meetings=[
 
 ];
 
+// window.localStorage.clear();
+// window.localStorage.setItem("users", JSON.stringify(users));
+// window.localStorage.setItem("meetings", JSON.stringify(meetings));
+// window.localStorage.setItem("currentuser", JSON.stringify(users[0]));
 
-window.localStorage.setItem("users", JSON.stringify(users));
-window.localStorage.setItem("meetings", JSON.stringify(meetings));
 
 //מחלקת משתמש חדש
 class User{
@@ -55,9 +57,20 @@ class Meeting{
 
 // שליפת מידע
 function getInfo(key, index){
-    const value = JSON.parse(window.localStorage.getItem(key))
-    return value;
+    const value = JSON.parse(window.localStorage.getItem(key));
+    if (index === undefined) {
+        return value;
+    } else {
+        for(let i = 0 ; i < value.length ; i++) {
+            if (index === value[i].id || index === value[i]["username"]) {
+                return value[i];
+            }
+        } 
+        return false;
+    }
 }
+
+
 
 
 
@@ -86,24 +99,7 @@ function addNewMeeting(name, time){
 }
 
 
-
-// בודק האם קיים משתמש בשם הזה, אם לא מוסיף את המשתמש החדש
-function addNewUser(username, password){
-    const users=JSON.parse(window.localStorage.getItem("users"));
-    for(let i=0; i<users.length; i++){
-        if(users[i]["username"]===username){
-            console.log("there is already a user with this name")
-            return /*  */;
-        }
-    }
-
-    const newuser = new User(username, password);
-    users.push(newuser); 
-    window.localStorage.setItem("users",JSON.stringify(users));
-
-}
-
-
+// מוחק פגישה
 function deleteMeeting(id){
     const meetings=JSON.parse(window.localStorage.getItem("meetings"));
     const currentUser=JSON.parse(window.localStorage.getItem("currentUser"));
@@ -141,6 +137,7 @@ function updateMeeting(id, key, value){
 }
 
 
+<<<<<<< HEAD
 
 
 
@@ -156,6 +153,12 @@ function updateMeeting(id, key, value){
 
 
 
+=======
+// פונקציה שמרוקנת את המשתמש הקיים
+function disconnect() {
+    window.localStorage.setItem("currentuser", "");
+}
+>>>>>>> 45d486f0b8176d829ab823f5b24a97976cbbce18
 
 
 
@@ -173,8 +176,5 @@ function currentUserToUsers(currentUser) {
     }
 
 }
-
-
-
 
 
