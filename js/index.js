@@ -1,20 +1,20 @@
-class FXmlHttpRequest{    
-    constructor {
-        this.onload = null;
-    }
+// class FXmlHttpRequest{    
+//     constructor {
+//         this.onload = null;
+//     }
 
-    onload() {
+//     onload() {
 
-    }
+//     }
 
-    open(method, url) {
-        this.method = method;
+//     open(method, url) {
+//         this.method = method;
 
 
-    }
+//     }
     
-    send() {
+//     send() {
         
 
-    }
-}
+//     }
+// }
