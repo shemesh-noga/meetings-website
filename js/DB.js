@@ -31,11 +31,9 @@ let meetings=[
 
 ];
 
-window.localStorage.clear();
+
 window.localStorage.setItem("users", JSON.stringify(users));
 window.localStorage.setItem("meetings", JSON.stringify(meetings));
-window.localStorage.setItem("currentuser", JSON.stringify(users[0]));
-
 
 //מחלקת משתמש חדש
 class User{
@@ -57,20 +55,9 @@ class Meeting{
 
 // שליפת מידע
 function getInfo(key, index){
-    const value = JSON.parse(window.localStorage.getItem(key));
-    if (index === undefined) {
-        return value;
-    } else {
-        for(let i = 0 ; i < value.length ; i++) {
-            if (index === value[i].id) {
-                return value[i];
-            }
-        }
-    }
+    const value = JSON.parse(window.localStorage.getItem(key))
+    return value;
 }
-
-console.log(getInfo("meetings"))
-console.log(getInfo("meetings", 1))
 
 
 
@@ -113,6 +100,7 @@ function addNewUser(username, password){
     const newuser = new User(username, password);
     users.push(newuser); 
     window.localStorage.setItem("users",JSON.stringify(users));
+
 }
 
 
@@ -141,6 +129,7 @@ function deleteMeeting(id){
 }
 
 
+
 //מעדכן את הפגישה
 function updateMeeting(id, key, value){
     const meetings=JSON.parse(window.localStorage.getItem("meetings"));
@@ -150,6 +139,20 @@ function updateMeeting(id, key, value){
         }
     }
 }
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
 
 
 // פונקציות עזר
@@ -166,3 +169,8 @@ function currentUserToUsers(currentUser) {
     }
 
 }
+
+
+
+
+
