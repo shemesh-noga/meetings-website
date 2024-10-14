@@ -1,3 +1,4 @@
+//build class of response
 class Response{
     constructor(status, message, data = ""){
         this.status = status;
@@ -5,7 +6,6 @@ class Response{
         this.data = data;
     }
 }
-
 
 
 // tairAndNoga/api/meetings/1
@@ -24,6 +24,7 @@ function server(objString) {
     let response;
 
     switch(method) {
+        //in case of GET method
         case "GET":
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/)[0];
@@ -64,6 +65,7 @@ function server(objString) {
             }
             break;
 
+        //in case of POST method
         case "POST":
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/)[0];
@@ -124,7 +126,7 @@ function server(objString) {
             }
 
             break;
-
+        //in case of PUT method
         case "PUT":
             if(regex.test(regMatch)) {
                 let key = regMatch.match(/^[^\/]+/)[0];
@@ -143,7 +145,7 @@ function server(objString) {
             }
 
             break;
-
+       //in case of DELETE method
         case "DELETE":
             if(regMatch === "meetings") {
                 let thisdata = deleteMeeting(body["id"]);
