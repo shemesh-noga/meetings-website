@@ -17,5 +17,9 @@ function put(){
 
 //delete data
 function delete(){
-    
+
 }
+
+
+
+
