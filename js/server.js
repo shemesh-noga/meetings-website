@@ -8,7 +8,7 @@ class Response{
 
 
 
-// // tairAndNoga/api/meetings/1
+// tairAndNoga/api/meetings/1
 
 function server(objString) {
     const obj = JSON.parse(objString)
