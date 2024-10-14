@@ -78,7 +78,7 @@ function updatingMeeting(objString){
 
 
 
-function deleteMeeting(obj) {
+function deleteingMeeting(obj) {
 // אם קיים איידי כזזה, ואם הוא שלו אם כן
 }
 

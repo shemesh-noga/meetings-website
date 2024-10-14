@@ -143,7 +143,7 @@ function addNewMeeting(name, time){
 function addNewUser(username, password){
     const users = getInfo("users")
     const newuser = new User(username, password);
-    console.log("hi")
+
     users.push(newuser); 
     setInfo("users", users);
 }
