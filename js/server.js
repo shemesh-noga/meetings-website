@@ -87,7 +87,7 @@ function server(objString) {
                     return response;
                 }
             } else {
-                if(regMatch === "signin") {
+                if(regMatch === "signup") {
                     const thisUser = getInfo("users", body["username"]);
 
                     if (thisUser === false) {

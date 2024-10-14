@@ -12,3 +12,5 @@ function changeTemplate() {
     //trensform the template into the section and change page 
     section.appendChild(signupContent)
 }
+
+
