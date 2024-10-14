@@ -1,21 +1,3 @@
-//מחלקת משתמש חדש
-class User{
-    constructor(username, password){
-        this.username = username;
-        this.password = password;
-        this.meetings = [];
-    }
-}
-
-// מחלקת פגישה חדשה
-class Meeting{
-    constructor(name, time){
-        this.name = name;
-        this.time = time;
-        this.id = findAvailID();
-    }
-}
-
 class Response{
     constructor(status, message, data = ""){
         this.status = status;
@@ -24,26 +6,16 @@ class Response{
     }
 }
 
-// פונקציה שמוצאת איי די פנוי וחדש
-function findAvailID() {
-    const MmetingsLength = getInfo("meetings").length;
-    const id = MmetingsLength + 1;
-    return id;
-}
-
 
 
 // בודק האם קיים משתמש בשם הזה, אם לא מוסיף את המשתמש החדש
-function addNewUser(username, password){
-    const thisUser = getInfo("users", username);
+function addingNewUser(objString){
+    obj = JSON.parse(objString);
+    const thisUser = getInfo("users", obj["username"]);
     let response;
 
     if (thisUser === false) {
-        const newuser = new User(username, password);
-        const users = getInfo("users")
-        users.push(newuser); 
-        setInfo("users", users);
-
+        // do function
         response = new Response(200, "user was added succesfully", JSON.stringify(newuser));
     } else {
         response = new Response(404, "there is already a user with this name");
@@ -53,32 +25,35 @@ function addNewUser(username, password){
 
 
 // הוספת פגישה חדשה
-function addNewMeeting(name, time){
+function addingNewMeeting(objString){
+    obj = JSON.parse(objString);
     let response;
-    if(name === undefined || time === undefined) {
+    if(obj["name"] === undefined || obj["time"] === undefined) {
         response = new Response(404, "please fill name and or time");
     } else {
-        const meetings = getInfo("meetings");
-        const currentuser = getInfo("currentuser");
-        const newMeeting = new Meeting(name, time);
-
-        meetings.push(newMeeting); 
-        setInfo("meetings", meetings);
-    
-        currentuser["meetings"].push(newMeeting.id);
-        setInfo("currentuser", currentuser);
-    
-        currentUserToUsers(currentuser);
-    
+        // do function
         response = new Response(200, "meeting added succesfully", JSON.stringify(newMeeting))
     }
     return response;
 }
 
 
+// עושה כניסה לוגין
+function checkingLogIn(objString) {
+    obj = JSON.parse(objString);
+
+
+}
+
+
+function updatingMeeting(objString){
+    obj = JSON.parse(objString);
+
+    
+}
 
 // מוחק פגישה
-// function deleteMeeting(){
+// function deleteMeeting(id){
 //     const meetings = getInfo("meetings");
 //     const currentuser = getInfo("currentuser");
 
@@ -102,12 +77,8 @@ function addNewMeeting(name, time){
 // }
 
 
-function deleteUser() {
 
-}
-
-
-function deleteMeeting(index) {
+function deleteMeeting(obj) {
 // אם קיים איידי כזזה, ואם הוא שלו אם כן
 }
 

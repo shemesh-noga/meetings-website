@@ -37,6 +37,47 @@ window.localStorage.setItem("meetings", JSON.stringify(meetings));
 window.localStorage.setItem("currentuser", JSON.stringify(users[0]));
 
 
+//מחלקת משתמש חדש
+class User{
+    constructor(username, password){
+        this.username = username;
+        this.password = password;
+        this.meetings = [];
+    }
+}
+
+// מחלקת פגישה חדשה
+class Meeting{
+    constructor(name, time){
+        this.name = name;
+        this.time = time;
+        this.id =  findAvailID();
+    }
+}
+
+
+// פונקציה שמוצאת איי די פנוי וחדש
+function findAvailID() {
+    const MmetingsLength = getInfo("meetings").length;
+    const id = MmetingsLength + 1;
+    return id;
+}
+
+
+
+// פונקציה שמכניסה את מידע המשתמש הנוכחי למערך המשתמשים
+function currentUserToUsers(currentUser) {
+    const users = getInfo("users");
+
+    for(let i = 0 ; i < users.length ; i++) {
+        if(users[i]["username"] === currentUser["username"]) {
+            users[i] = currentUser;
+            setInfo("users", users)
+        }
+    }
+}
+
+
 
 // שליפת מידע
 function getInfo(key, index){
@@ -59,42 +100,70 @@ function setInfo(key, change){
 }
 
 
-// פונקציה שמוחקת מידע
-function deleteInfo(index) {
-    if(typeof index === string){
-        const users = getInfo("users");
-        for(let i = 0 ; i < users.length ; i++) {
-            if(users[i]["username"] === index) {
-                users.splice(i, 1)
-                break;
+// שליפת פגישות של משתמש
+function getMeetings(username){
+    const users = getInfo("users");
+    const meetings = getInfo("meetings");
+    let returnedMeetings = []
+    for(let i = 0 ; i < users.length ; i++){
+        if(users[i]["username"] === username){
+            let usersMeetings = users[i]["meetings"]
+
+            for(let j = 0 ; j < usersMeetings.length ; j++) {
+                for(let k = 0 ; k < meetings.length ; k++) {
+                    if(usersMeetings[j] === meetings[k].id) {
+                        returnedMeetings.push(meetings[k])
+                    }
+                }
             }
         }
-        setInfo("users",users);
-        setInfo("currentuser","");
-    } 
-
-    else {
-        const meetings = getInfo("meetings");
-        const currentuser = getInfo("currentuser")
-
-        for(let i = 0 ; i < meetings.length ; i++) {
-            if(meetings[i]["id"] === index) {
-                meetings[i]="";
-                break;
-            }
-        }
-
-        currentuser["meetings"].
-
-        setInfo("currentuser", )
-        setInfo("meetings",meetings);
-
+        return returnedMeetings;
     }
-
+    return false;
 }
 
 
-//מעדכן את הפגישה
+// הוספת פגישה חדשה
+function addNewMeeting(name, time){
+    const meetings = getInfo("meetings");
+    const currentuser = getInfo("currentuser");
+    const newMeeting = new Meeting(name, time);
+
+    meetings.push(newMeeting); 
+    setInfo("meetings", meetings);
+
+    currentuser["meetings"].push(newMeeting.id);
+    setInfo("currentuser", currentuser);
+
+    currentUserToUsers(currentuser);
+}
+
+
+// מוסיף את המשתמש החדש
+function addNewUser(username, password){
+    const users = getInfo("users")
+    const newuser = new User(username, password);
+    console.log("hi")
+    users.push(newuser); 
+    setInfo("users", users);
+}
+
+
+// נכנס למשתמש
+function doLogIn(username) {
+    let currentuser = getInfo("currentuser");
+    const users = getInfo("users");
+    for(let i = 0 ; i < users.length ; i++){
+        if(users[i]["username"] === username) {
+            currentuser = users[i];
+            setInfo("currentuser", currentuser)
+            break;
+        }
+    }
+}
+
+
+//מעדכן פגישה
 function updateMeeting(id, key, value){
     const meetings=JSON.parse(window.localStorage.getItem("meetings"));
     for(let i = 0 ; i < meetings.length ; i ++){
@@ -104,29 +173,31 @@ function updateMeeting(id, key, value){
     }
 }
 
-// 
 
+// מוחק פגישה
+function deleteMeeting(id){
+    const meetings = getInfo("meetings");
+    const currentuser = getInfo("currentuser")
+
+    for(let i = 0 ; i < meetings.length ; i++) {
+        if(meetings[i]["id"] === id) {
+            meetings[i] = "";
+            break;
+        }
+    } setInfo("meetings", meetings);
+
+    let ourIndex = currentuser["meetings"].findIndex((x) => x===id)
+    currentuser["meetings"].splice(ourIndex, 1)
+    setInfo("currentuser", currentuser)
+
+    currentUserToUsers(currentuser);
+}
 
 
 
 // פונקציה שמרוקנת את המשתמש הקיים
 function disconnect() {
-    window.localStorage.setItem("currentuser", "");
+    setInfo("currentuser", "");
 }
 
 
-
-
-// פונקציות עזר
-// פונקציה שמעדכנת את תוכן משתמש נוכחי למערך היוזרים
-function currentUserToUsers(currentuser) {
-    const users = getInfo("users");
-
-    for(let i = 0 ; i < users.length ; i++) {
-        if(users[i]["username"] === currentuser["username"]) {
-            users[i] = currentuser;
-            setInfo("users", users)
-        }
-    }
-
-}
