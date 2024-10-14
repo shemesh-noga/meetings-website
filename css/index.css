@@ -108,7 +108,13 @@ button:hover{
 }
 
 
-
+#name {
+    color: white;
+    position: absolute;
+    left: 25px;
+    bottom: 40px;
+    font-size: 1.7rem;
+}
 
 /* div{
     display:flex;

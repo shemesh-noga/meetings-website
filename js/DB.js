@@ -31,10 +31,10 @@ let meetings=[
 
 ];
 
-window.localStorage.clear();
-window.localStorage.setItem("users", JSON.stringify(users));
-window.localStorage.setItem("meetings", JSON.stringify(meetings));
-window.localStorage.setItem("currentuser", JSON.stringify(users[0]));
+// window.localStorage.clear();
+// window.localStorage.setItem("users", JSON.stringify(users));
+// window.localStorage.setItem("meetings", JSON.stringify(meetings));
+// window.localStorage.setItem("currentuser", JSON.stringify(users[0]));
 
 
 //מחלקת משתמש חדש
@@ -62,15 +62,15 @@ function getInfo(key, index){
         return value;
     } else {
         for(let i = 0 ; i < value.length ; i++) {
-            if (index === value[i].id) {
+            if (index === value[i].id || index === value[i]["username"]) {
                 return value[i];
             }
-        }
+        } 
+        return false;
     }
 }
 
-console.log(getInfo("meetings"))
-console.log(getInfo("meetings", 1))
+
 
 
 
@@ -99,23 +99,7 @@ function addNewMeeting(name, time){
 }
 
 
-
-// בודק האם קיים משתמש בשם הזה, אם לא מוסיף את המשתמש החדש
-function addNewUser(username, password){
-    const users=JSON.parse(window.localStorage.getItem("users"));
-    for(let i=0; i<users.length; i++){
-        if(users[i]["username"]===username){
-            console.log("there is already a user with this name")
-            return /*  */;
-        }
-    }
-
-    const newuser = new User(username, password);
-    users.push(newuser); 
-    window.localStorage.setItem("users",JSON.stringify(users));
-}
-
-
+// מוחק פגישה
 function deleteMeeting(id){
     const meetings=JSON.parse(window.localStorage.getItem("meetings"));
     const currentUser=JSON.parse(window.localStorage.getItem("currentUser"));
@@ -152,6 +136,13 @@ function updateMeeting(id, key, value){
 }
 
 
+// פונקציה שמרוקנת את המשתמש הקיים
+function disconnect() {
+    window.localStorage.setItem("currentuser", "");
+}
+
+
+
 // פונקציות עזר
 
 // פונקציה שמעדכנת את תוכן משתמש נוכחי למערך היוזרים
@@ -166,3 +157,5 @@ function currentUserToUsers(currentUser) {
     }
 
 }
+
+
