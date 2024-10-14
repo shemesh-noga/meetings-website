@@ -7,7 +7,8 @@ class Response{
 }
 
 
-// tairAndNoga/api/meetings/1
+
+// // tairAndNoga/api/meetings/1
 
 function server(objString) {
     const obj = JSON.parse(objString)
@@ -141,44 +142,6 @@ function server(objString) {
 
 
 
-
-
-
-function updatingMeeting(obj){
-    
-}
-
-
-
-// מוחק פגישה
-// function deleteMeeting(id){
-//     const meetings = getInfo("meetings");
-//     const currentuser = getInfo("currentuser");
-
-//    for(let i = 0 ; i < meetings.length ; i ++){
-//         if(meetings[i].id === id) {
-//             meetings[i] = "";
-//             window.localStorage.setItem("meetings",JSON.stringify(meetings));
-//             break;
-//         }
-//    }
-
-//    for(let i = 0 ; i < currentuser["meetings"] ; i++){
-//         if(currentuser["meetings"][i] === id) {
-//             currentuser["meetings"].splice(i, 1);
-//             window.localStorage.setItem("currentuser", JSON.stringify(currentuser))
-//             break;
-//         }
-//    }
-
-//    currentuserToUsers(currentuser);
-// }
-
-
-
-function deleteingMeeting(obj) {
-// אם קיים איידי כזזה, ואם הוא שלו אם כן
-}
 
 
 
