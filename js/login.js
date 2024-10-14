@@ -1,3 +1,4 @@
+//while you press the sign up page, it will transform you to sign up page
 var signupBtn = document.getElementById("sign-up-btn");
 var section = document.getElementById("see-template")
 
@@ -12,3 +13,9 @@ function changeTemplate() {
     //trensform the template into the section and change page 
     section.appendChild(signupContent)
 }
+
+
+
+
+
+

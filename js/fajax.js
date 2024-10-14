@@ -25,7 +25,7 @@ class Fajax{
 
 
 
-//creat new divs with class num by the meeting id
+//creat new divs with class name and id by the meeting id
 function buildDivs(){
 const info=getCurrentUserInfo(("meetings"));
 let element = document.getElementById("meeting-container");

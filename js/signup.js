@@ -1,3 +1,4 @@
+//while you press the log in page, it will transform you to log in page
 var loginBtn = document.getElementById("log-in-btn");
 var section = document.getElementById("see-template")
 
@@ -12,3 +13,5 @@ function changeTemplate() {
     //trensform the template into the section and change page 
     section.appendChild(loginContent)
 }
+
+
