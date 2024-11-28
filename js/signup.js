@@ -13,8 +13,6 @@ function changeTemplate() {
     section.appendChild(loginContent)
 }
 
-<<<<<<< HEAD
-=======
 function changeTemplateToMeeting() {
     section.innerHTML = "";
     let meetingTemp = document.getElementById("meeting-template");
@@ -26,5 +24,4 @@ function changeTemplateToMeeting() {
 
 
 
->>>>>>> d03bfe1065e3b902cbd180c1b678a152c0079415
 

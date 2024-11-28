@@ -1,4 +1,4 @@
-
+// replace pages
 function changeTemplateToMeeting() {
     section.innerHTML = "";
     let meetingTemp = document.getElementById("meeting-template");
@@ -26,7 +26,7 @@ function changeTemplateToMeeting() {
       const passwordVal = document.getElementById("password").value;
       const passwordCheckVal = document.getElementById("password-check").value;
   
-    
+    //fajax class
       const fajax = new Fajax();
       fajax.open("POST", "tairAndNoga/api/signup", `{"username":"${usernameVal}", "password": ${passwordVal}}`);
       fajax.onload= function(response){
@@ -46,18 +46,21 @@ function changeTemplateToMeeting() {
                   }
               fajaxlogin.send();
               }
-          }
-        }
-        
-      }
-      fajax.send();
-  }
+           }
+         }
+       }
+     fajax.send();
+   }
+
 
 
   let loginBtnUser = document.getElementById("log-in-user")
   // const loginBtnUser = document.getElementById("log-in-user");
   loginBtnUser.addEventListener("click", chekingLoginBtn)
     
+
+
+  //activate the login button
   function chekingLoginBtn() {
       const usernameVal = document.getElementById("username").value;
       const passwordVal = document.getElementById("password").value;
